@@ -1,19 +1,5 @@
 # React 示例项目 · 简易留言板 + 待办事项
 
-> ## *2017.7 升级版预览：[`react-scaffold`](https://github.com/kenberkeley/react-scaffold)，敬请期待！*
-
-![应用截图](./screenshot.png)
-
-> ###写在前面  
-> 一直以来，我都相当纳闷：为什么 React 的那些 starter kit 都构建得那么恶心？  
-> 能不能像 [Vue Cli][vue-cli] 生成的[项目架构][vue-cli-template]般优雅？说干就干，本项目就改自 [Vue Demo][vue-demo]
-> 
-> ### 更新
-> 2016/8/28 &nbsp; 引入 `cross-env` 解决跨平台问题，新增优化项 `DedupePlugin`  
-> 2016/8/29 &nbsp; 重命名 `makeContainer / makeReducer.js => createContainer / createReducer.js`  
-> 2016/9/10 &nbsp; 重构 `src/redux/`  
-> 2016/10/15 &nbsp; 同步 Vue Demo 的改动  
-> 2016/10/16 &nbsp; 改进：仅在开发模式下引入 React Hot Loader
 
 ## 目录
 #### &sect; [技术栈](#features)

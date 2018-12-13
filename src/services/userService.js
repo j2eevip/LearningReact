@@ -6,7 +6,7 @@ import xhr from './xhr/'
 class UserService {
 
   checkLogin () {
-    return xhr({ url: '/user' })
+    return xhr({ url: '/team/match/stat/gal' })
   }
 
   /**
