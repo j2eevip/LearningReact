@@ -1,17 +1,19 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class NotFound extends Component {
-  static contextTypes = {
-    router: React.PropTypes.object.isRequired
-  }
+export default class NotFound extends React.Component {
+    constructor(props) {
+        super(props)
+    }
 
-  componentWillMount() {
-    alert('404 NOT FOUND')
-    this.context.router.replace('/')
-  }
+    static contextTypes = {
+        router: React.PropTypes.object.isRequired
+    }
 
-  render () {
-    // 非实体组件需显式返回 null
-    return null
-  }
+    componentWillMount() {
+        this.context.router.replace('/')
+    }
+
+    render() {
+        return <div><span>页面跑丢了 404 异常</span></div>
+    }
 }

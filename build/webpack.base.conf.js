@@ -1,25 +1,21 @@
-var path = require('path'),
+const path = require('path'),
   webpack = require('webpack'),
   NyanProgressPlugin = require('nyan-progress-webpack-plugin');
 
-var rootPath = path.resolve(__dirname, '..'), // 项目根目录
-  src = path.join(rootPath, 'src'), // 开发源码目录
-  env = process.env.NODE_ENV.trim(); // 当前环境
-var commonPath = {
+const rootPath = path.resolve(__dirname, '..'),
+  src = path.join(rootPath, 'src'),
+  env = process.env.NODE_ENV.trim();
+const commonPath = {
   rootPath: rootPath,
-  dist: path.join(rootPath, 'dist'), // build 后输出目录
-  indexHTML: path.join(src, 'index.html'), // 入口基页
-  staticDir: path.join(rootPath, 'static') // 无需处理的静态资源目录
+  dist: path.join(rootPath, 'dist'),
+  indexHTML: path.join(src, 'index.html'),
+  staticDir: path.join(rootPath, 'static')
 };
 
 module.exports = {
   commonPath: commonPath,
   entry: {
     app: path.join(src, 'app.js'),
-
-    // ================================
-    // 框架 / 类库 分离打包
-    // ================================
     vendor: [
       'history',
       'lodash',
@@ -39,9 +35,6 @@ module.exports = {
   resolve: {
     extensions: ['', '.js', '.jsx'],
     alias: {
-      // ================================
-      // 自定义路径别名
-      // ================================
       ASSET: path.join(src, 'assets'),
       COMPONENT: path.join(src, 'components'),
       ACTION: path.join(src, 'redux/actions'),
@@ -62,7 +55,7 @@ module.exports = {
     loaders: [{
       test: /\.(js|jsx)$/,
       loaders: (function() {
-        var _loaders = ['babel?' + JSON.stringify({
+        const _loaders = ['babel?' + JSON.stringify({
           cacheDirectory: true,
           plugins: [
             'transform-runtime',
@@ -75,8 +68,6 @@ module.exports = {
             }
           }
         }), 'eslint'];
-
-        // 开发环境下引入 React Hot Loader
         if (env === 'development') {
           _loaders.unshift('react-hot');
         }
@@ -94,7 +85,7 @@ module.exports = {
       test: /\.(png|jpe?g|gif|svg)$/,
       loader: 'url',
       query: {
-        limit: 10240, // 10KB 以下使用 base64
+        limit: 4096,
         name: 'img/[name]-[hash:6].[ext]'
       }
     }, {
@@ -106,18 +97,15 @@ module.exports = {
     formatter: require('eslint-friendly-formatter')
   },
   plugins: [
-    new NyanProgressPlugin(), // 进度条
+    new NyanProgressPlugin(),
     new webpack.DefinePlugin({
-      'process.env': { // 这是给 React / Redux 打包用的
+      'process.env': {
         NODE_ENV: JSON.stringify('production')
       },
-      // ================================
-      // 配置开发全局常量
-      // ================================
       __DEV__: env === 'development',
       __PROD__: env === 'production',
-      __COMPONENT_DEVTOOLS__: false, // 是否使用组件形式的 Redux DevTools
-      __WHY_DID_YOU_UPDATE__: false // 是否检测不必要的组件重渲染
+      __COMPONENT_DEVTOOLS__: false,
+      __WHY_DID_YOU_UPDATE__: false
     })
   ]
 };

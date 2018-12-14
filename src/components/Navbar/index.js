@@ -26,9 +26,9 @@ export default class Navbar extends Component {
                                 data-toggle="collapse"
                                 data-target="#nav-collapse">
                                 <span className="sr-only">Toggle navigation</span>
-                                <span className="icon-bar"></span>
-                                <span className="icon-bar"></span>
-                                <span className="icon-bar"></span>
+                                <span className="icon-bar"/>
+                                <span className="icon-bar"/>
+                                <span className="icon-bar"/>
                             </button>
                             <Link to='/' className="navbar-brand">
                                 React Demo
